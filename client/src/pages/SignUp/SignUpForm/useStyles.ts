@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     '&::placeholder': {
-      color: '#000 !important',
+      color: '#000000',
+      opacity: 1,
     },
   },
   forgot: {

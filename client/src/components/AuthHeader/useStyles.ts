@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   authHeader: {
-    minHeight: '15vh',
-    alignSelf: 'center',
+    minHeight: '20vh',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
@@ -24,7 +23,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#ffffff',
     color: '#3a8dff',
     boxShadow: 'none',
-    marginTop: '-5px',
+
+    '&:hover': {
+      backgroundColor: '#3a8dff',
+      color: '#ffffff',
+    },
   },
 }));
 

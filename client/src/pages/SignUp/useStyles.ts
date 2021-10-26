@@ -1,20 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import authImage from '../../Images/auth_page.png';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    minHeight: '80vh',
-    '& .MuiInput-underline:before': {
-      borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
-    },
-    display: 'flex',
-  },
-  authImage: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    objectPosition: 'center',
-  },
   authWrapper: {
     width: '200px',
     margin: '0 auto',
@@ -22,7 +8,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    minHeight: '85vh',
+    minHeight: '80vh',
   },
   welcome: {
     fontSize: 32,

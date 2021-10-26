@@ -11,9 +11,21 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '5px',
   },
   inputs: {
-    marginTop: '.8rem',
-    height: '2rem',
+    fontSize: 16,
+    fontWeight: 'bold',
+    height: '3rem',
     padding: '5px',
+    boxShadow: '0px 0px 12px 0px rgba(0,51,255,0.1)',
+    textAlign: 'center',
+
+    '&:last-child': {
+      marginTop: '-10px',
+    },
+
+    '&::placeholder': {
+      color: '#000000',
+      opacity: 1,
+    },
   },
   forgot: {
     paddingRight: 10,
