@@ -6,14 +6,25 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   label: {
-    fontSize: 19,
-    color: 'rgb(0,0,0,0.4)',
+    fontSize: 16,
+    fontWeight: 'bold',
     paddingLeft: '5px',
   },
   inputs: {
-    marginTop: '.8rem',
-    height: '2rem',
+    fontSize: 16,
+    fontWeight: 'bold',
+    height: '3rem',
     padding: '5px',
+    boxShadow: '0px 0px 11px 0px rgba(0,51,255,0.1)',
+    textAlign: 'center',
+
+    '&:last-child': {
+      marginTop: '-10px',
+    },
+
+    '&::placeholder': {
+      color: 'black !important',
+    },
   },
   forgot: {
     paddingRight: 10,
