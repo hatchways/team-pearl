@@ -42,14 +42,14 @@ export default function Register(): JSX.Element {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Hidden smDown>
-        <Grid item container md={6} lg={6} alignItems="center">
+      <Hidden mdDown>
+        <Grid item lg={6} spacing={0} style={{ maxHeight: '100vh' }}>
           <img src={authImage} className={classes.authImage} alt="work on laptop" draggable="false" />
         </Grid>
       </Hidden>
-      <Grid item xs={12} md={6} lg={6} component={Paper} square>
+      <Grid item xs={12} md={12} lg={6} component={Paper} square spacing={0}>
         <Box className={classes.authWrapper}>
-          <Box width="100%" minWidth={450} p={3} alignSelf="center">
+          <Box width="100%" minWidth={375} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>
                 <Typography className={classes.welcome} component="h1" variant="h5">
@@ -58,10 +58,10 @@ export default function Register(): JSX.Element {
               </Grid>
             </Grid>
             <SignUpForm handleSubmit={handleSubmit} />
-            <AuthHeader linkTo="/login" asideText="Already have an account?" btnText="Login" />
           </Box>
           <Box p={1} alignSelf="center" />
         </Box>
+        <AuthHeader linkTo="/login" asideText="Already have an account?" btnText="Login" />
       </Grid>
     </Grid>
   );

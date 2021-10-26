@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     height: '3rem',
     padding: '5px',
-    boxShadow: '0px 0px 11px 0px rgba(0,51,255,0.1)',
+    boxShadow: '0px 0px 12px 0px rgba(0,51,255,0.1)',
     textAlign: 'center',
 
     '&:last-child': {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     '&::placeholder': {
-      color: 'black !important',
+      color: '#000 !important',
     },
   },
   forgot: {

@@ -3,7 +3,7 @@ import authImage from '../../Images/auth_page.png';
 
 const useStyles = makeStyles(() => ({
   root: {
-    minHeight: '100vh',
+    minHeight: '80vh',
     '& .MuiInput-underline:before': {
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
@@ -12,6 +12,8 @@ const useStyles = makeStyles(() => ({
   authImage: {
     width: '100%',
     height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center',
   },
   authWrapper: {
     width: '200px',
@@ -20,7 +22,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    minHeight: '100vh',
+    minHeight: '85vh',
   },
   welcome: {
     fontSize: 32,
