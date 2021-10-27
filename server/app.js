@@ -4,10 +4,11 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const { notFound, errorHandler } = require("./middleware/error");
-const connectDB = require("./db");
+const { connectDB } = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+require("dotenv").config();
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
