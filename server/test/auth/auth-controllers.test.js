@@ -5,15 +5,12 @@ const User = require("../../models/User");
 const mongo_url = "mongodb://localhost:27017/test";
 
 describe("Authentication routes test", () => {
-  let server;
-
   beforeAll(async () => {
     await User.remove({});
-    // server = app.listen(8001)
   });
 
   afterAll(async () => {
-    // server.close()
+    await mongoose.connection.close();
   });
 
   test("can register user", async () => {
