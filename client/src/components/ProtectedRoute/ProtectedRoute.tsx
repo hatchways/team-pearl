@@ -1,4 +1,3 @@
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useAuth } from '../../context/useAuthContext';
 
