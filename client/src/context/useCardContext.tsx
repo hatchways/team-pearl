@@ -7,5 +7,5 @@ export const CardContext = createContext<any>({} as any);
 export const CardProvider: FunctionComponent = ({ children }): JSX.Element => {
   const [board, setBoard] = useState(mockBoard);
   const providerValue = { board, setBoard };
-  return <CardContext.Provider value={providerValue}>{children}</CardContext.Provider>;
+  return <CardContext.Provider value={[board, setBoard]}>{children}</CardContext.Provider>;
 };

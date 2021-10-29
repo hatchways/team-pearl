@@ -3,6 +3,7 @@ export interface Card {
   title: string;
   description: string;
   color: string;
+  date: string;
 }
 
 // Each column will contain references to their cards
