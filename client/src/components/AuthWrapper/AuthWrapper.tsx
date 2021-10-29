@@ -1,3 +1,4 @@
+import React from "react"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Paper from '@material-ui/core/Paper';
@@ -6,7 +7,7 @@ import useStyles from './useStyles';
 import authImage from '../../Images/auth_page.png';
 
 type props = {
-  children: JSX.Element[];
+  children: React.ReactNode;
 };
 
 const AuthWrapper = ({ children }: props): JSX.Element => {
