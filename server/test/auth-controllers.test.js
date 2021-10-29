@@ -11,6 +11,7 @@ const signedUpUser = {
 
 describe("Authentication test", () => {
   beforeAll(async () => {
+    await User.deleteMany({})
     await User.create(signedUpUser);
   });
 
