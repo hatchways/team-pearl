@@ -43,10 +43,17 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   demoBtn: {
-    padding: '20px',
     width: 160,
-    height: 30,
     fontSize: 16,
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: '#ffffff',
+    color: '#3a8dff',
+    boxShadow: 'none',
+
+    '&:hover': {
+      backgroundColor: '#3a8dff',
+      color: '#ffffff',
+    },
   },
 }));
 
