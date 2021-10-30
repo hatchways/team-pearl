@@ -3,7 +3,7 @@ import mockBoard from '../mocks/mockData';
 import { DataInterface } from '../interface/Data';
 
 //Creating the context
-export const BoardContext = createContext({} as (DataInterface | Dispatch<SetStateAction<DataInterface>>)[]);
+export const BoardContext = createContext({} as any);
 
 //Creating the provider
 export const BoardProvider: FunctionComponent = ({ children }): JSX.Element => {

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   container: {
     margin: '8px',
     border: '1px solid lightgrey',
@@ -30,6 +30,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'grey',
     display: 'flex',
   },
-}));
+});
 
 export default useStyles;

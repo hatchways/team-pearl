@@ -1,11 +1,26 @@
 import { useContext } from 'react';
-import { CardContext } from '../../context/useCardContext';
+import { BoardContext } from '../../context/useBoardContext';
 import Column from '../Column/Column';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import useStyles from './useStyles';
+
+export interface result {
+  draggableId: string;
+  type: string;
+  reason: string;
+  source: {
+    droppableId: string;
+    index: number;
+  };
+  destination: {
+    droppableId: string;
+    index: number;
+  };
+}
+
 export default function Board(): JSX.Element {
   const styles = useStyles();
-  const [board, setBoard] = useContext(CardContext);
+  const [board, setBoard] = useContext(BoardContext);
 
   const onDragEnd = (result: any) => {
     const { destination, source, draggableId, type } = result;
