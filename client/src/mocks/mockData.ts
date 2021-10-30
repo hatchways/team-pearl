@@ -1,5 +1,4 @@
 import { DataInterface } from '../interface/Data';
-// an example board
 const mockBoard: DataInterface = {
   cards: {
     'card-1': {

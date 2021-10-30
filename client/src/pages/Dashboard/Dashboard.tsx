@@ -7,9 +7,7 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 import { useEffect } from 'react';
-import { CardProvider } from '../../context/useCardContext';
-import Board from '../../components/Board/Board';
-
+import { BoardProvider } from '../../context/useBoardContext';
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
 
@@ -31,13 +29,12 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
-      <CardProvider>
+      <BoardProvider>
         <CssBaseline />
         <Grid item className={classes.drawerWrapper}>
           <ChatSideBanner loggedInUser={loggedInUser} />
         </Grid>
-        <Board />
-      </CardProvider>
+      </BoardProvider>
     </Grid>
   );
 }
