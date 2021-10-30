@@ -42,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#3a8dff',
     fontWeight: 'bold',
   },
+  demoBtn: {
+    padding: '20px',
+    width: 160,
+    height: 30,
+    fontSize: 16,
+  },
 }));
 
 export default useStyles;
