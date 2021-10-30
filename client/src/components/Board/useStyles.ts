@@ -13,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
       width: '80%',
     },
     [theme.breakpoints.between('md', 'lg')]: {
-      width: '75%',
+      width: '70%',
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'inline',
     },
   },
