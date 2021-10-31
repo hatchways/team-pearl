@@ -6,7 +6,7 @@ const Column = require("../models/Column");
 // @desc Create a new card
 // @access Private
 exports.createCard = asyncHandler(async (req, res, next) => {
-  const { column, title, description, color } = req.body;
+  const { column, title, description, color, date } = req.body;
 
   const validColumn = await Column.findById(column);
 
@@ -19,6 +19,7 @@ exports.createCard = asyncHandler(async (req, res, next) => {
     title,
     description,
     color,
+    date,
   });
 
   if (!card) {
