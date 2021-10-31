@@ -4,20 +4,6 @@ import Column from '../Column/Column';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import useStyles from './useStyles';
 
-export interface result {
-  draggableId: string;
-  type: string;
-  reason: string;
-  source: {
-    droppableId: string;
-    index: number;
-  };
-  destination: {
-    droppableId: string;
-    index: number;
-  };
-}
-
 export default function Board(): JSX.Element {
   const styles = useStyles();
   const [board, setBoard] = useContext(BoardContext);
