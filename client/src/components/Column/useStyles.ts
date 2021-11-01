@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     backgroundColor: '#F4F6FF',
     display: 'flex',
     flexDirection: 'column',
-    height: 'auto',
+    height: '100%',
   },
   title: {
     padding: '8px',

@@ -1,4 +1,4 @@
-export interface Card {
+export interface ICard {
   id: string;
   title: string;
   description: string;
@@ -21,7 +21,7 @@ export interface Board {
 
 export interface DataInterface {
   cards: {
-    [key: string]: Card;
+    [key: string]: ICard;
   };
   columns: {
     [key: string]: Column;

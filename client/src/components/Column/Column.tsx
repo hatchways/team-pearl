@@ -1,9 +1,11 @@
 import React from 'react';
 import useStyles from './useStyles';
 import Card from '../Card/Card';
+import { ICard } from '../../interface/Data';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { MoreHoriz } from '@material-ui/icons';
+
 export default function Column(props: any): JSX.Element {
   const classes = useStyles();
   return (
@@ -12,9 +14,9 @@ export default function Column(props: any): JSX.Element {
         <div className={classes.container} {...provided.draggableProps} ref={provided.innerRef}>
           <Grid container>
             <Grid item xs>
-              <h1 className={classes.title} {...provided.dragHandleProps}>
+              <Typography component="h1" className={classes.title} {...provided.dragHandleProps}>
                 {props.column.title}
-              </h1>
+              </Typography>
             </Grid>
             <Grid item>
               <MoreHoriz fontSize="inherit" className={classes.moreHorizontal} />
@@ -24,7 +26,7 @@ export default function Column(props: any): JSX.Element {
           <Droppable droppableId={props.column.id} type="card">
             {(provided) => (
               <div className={classes.cards} ref={provided.innerRef} {...provided.droppableProps}>
-                {props.cards.map((card: any, index: number) => (
+                {props.cards.map((card: ICard, index: number) => (
                   <Card key={card.id} card={card} index={index} color={card.color} />
                 ))}
                 {provided.placeholder}
