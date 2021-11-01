@@ -6,7 +6,8 @@ const Column = require("../models/Column");
 // @desc Create a new card
 // @access Private
 exports.createCard = asyncHandler(async (req, res, next) => {
-  const { column, title, description, color, date } = req.body;
+  const { column } = req.body;
+  req.body.column = undefined;
 
   const validColumn = await Column.findById(column);
 
@@ -15,12 +16,7 @@ exports.createCard = asyncHandler(async (req, res, next) => {
     throw new Error("The column with this ID doesn't exist");
   }
 
-  const card = await Card.create({
-    title,
-    description,
-    color,
-    date,
-  });
+  const card = await Card.create(req.body);
 
   if (!card) {
     res.status(404);
