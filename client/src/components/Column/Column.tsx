@@ -14,7 +14,7 @@ export default function Column(props: any): JSX.Element {
         <div className={classes.container} {...provided.draggableProps} ref={provided.innerRef}>
           <Grid container>
             <Grid item xs>
-              <Typography component="h1" className={classes.title} {...provided.dragHandleProps}>
+              <Typography variant="h5" className={classes.title} {...provided.dragHandleProps}>
                 {props.column.title}
               </Typography>
             </Grid>

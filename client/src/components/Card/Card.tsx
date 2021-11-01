@@ -22,6 +22,7 @@ const useStyles = makeStyles<DefaultTheme, Props>({
   title: {
     textAlign: 'left',
     paddingLeft: '10px',
+    marginTop: '10px',
   },
   tag: (props) => {
     return {
