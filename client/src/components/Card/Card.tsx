@@ -1,10 +1,7 @@
-//import useStyles from './useStyles';
 import { Draggable } from 'react-beautiful-dnd';
-import { Paper } from '@material-ui/core';
-import { Box } from '@material-ui/core';
+import { Paper, Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { DefaultTheme } from '@material-ui/styles';
-import { grey } from '@material-ui/core/colors';
 
 interface Props {
   color: string;
@@ -44,7 +41,6 @@ const useStyles = makeStyles<DefaultTheme, Props>({
 });
 
 export default function Card(props: any): JSX.Element {
-  //const color = props.card.color;
   const classes = useStyles(props.card);
   return (
     <Paper>
@@ -58,7 +54,9 @@ export default function Card(props: any): JSX.Element {
             data-isDragging={snapshot.isDragging}
           >
             <Box className={classes.tag}></Box>
-            <h2 className={classes.title}>{props.card.title}</h2>
+            <Typography variant="h5" className={classes.title}>
+              {props.card.title}
+            </Typography>
             <p className={classes.date}>{props.card.date}</p>
           </div>
         )}

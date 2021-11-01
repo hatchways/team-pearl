@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     fontSize: '15px',
   },
   title: {
+    marginTop: '10px',
     textAlign: 'left',
     paddingLeft: '10px',
   },
@@ -20,7 +21,6 @@ const useStyles = makeStyles({
     borderRadius: '10px',
     marginLeft: '10px',
     marginTop: '5px',
-    //color: (props) => `${props.card.color}`,
   },
 });
 

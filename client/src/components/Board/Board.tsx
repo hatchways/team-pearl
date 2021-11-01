@@ -53,7 +53,7 @@ export default function Board(): JSX.Element {
       setBoard(newState);
       return;
     }
-    // list to list
+
     const startCardIds = Array.from(start.cardIds);
     startCardIds.splice(source.index, 1);
     const newStart = {

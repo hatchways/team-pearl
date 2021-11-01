@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   container: {
     width: 'auto',
-    //border: '1px solid lightgray',
     borderRadius: '2px',
     display: 'flex',
     height: '100%',
