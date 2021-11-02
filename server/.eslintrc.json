@@ -10,6 +10,7 @@
     "no-return-await": "off",
     "no-underscore-dangle": "off",
     "object-shorthand": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "consistent-return": "off"
   }
 }
