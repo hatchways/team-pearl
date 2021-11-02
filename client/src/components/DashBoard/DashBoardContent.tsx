@@ -21,7 +21,9 @@ export default function DashBoardContent(): JSX.Element {
                 }}
               >
                 <Button startIcon={<Dashboard />}>Dashboard</Button>
-                <Button startIcon={<CalendarToday />}>Calendar</Button>
+                <Button sx={{ color: 'gray' }} startIcon={<CalendarToday />}>
+                  Calendar
+                </Button>
               </div>
               <div
                 style={{
