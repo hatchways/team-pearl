@@ -16,7 +16,8 @@ export default function DashBoardContent(): JSX.Element {
               </div>
               <div
                 style={{
-                  marginLeft: '100px',
+                  position: 'absolute',
+                  right: '400px',
                 }}
               >
                 <Button startIcon={<Dashboard />}>Dashboard</Button>
@@ -24,10 +25,11 @@ export default function DashBoardContent(): JSX.Element {
               </div>
               <div
                 style={{
-                  marginLeft: '500px',
+                  position: 'absolute',
+                  right: '5px',
                 }}
               >
-                <Button className="btn btn-primary" sx={{ bgcolor: '' }} startIcon={<Add />}>
+                <Button variant="contained" sx={{ bgcolor: '', mr: '10px' }} startIcon={<Add />}>
                   Create Board
                 </Button>
                 <img width="50px" className="rounded-circle" height="50px" src={userLogo} />
