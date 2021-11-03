@@ -22,7 +22,8 @@ const useStyles = makeStyles<DefaultTheme, Props>({
   title: {
     textAlign: 'left',
     paddingLeft: '10px',
-    marginTop: '10px',
+    margin: '14px 0',
+    fontWeight: 'bold',
   },
   tag: (props) => {
     return {
@@ -58,7 +59,9 @@ export default function Card(props: any): JSX.Element {
             <Typography variant="h5" className={classes.title}>
               {props.card.title}
             </Typography>
-            <p className={classes.date}>{props.card.date}</p>
+            <Typography variant="body1" className={classes.date}>
+              {props.card.date}
+            </Typography>
           </div>
         )}
       </Draggable>
