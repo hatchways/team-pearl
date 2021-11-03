@@ -1,6 +1,7 @@
-const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
+const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
+const Board = require("../models/Board");
 
 // @route POST /auth/register
 // @desc Register user
@@ -22,11 +23,19 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     throw new Error("A user with that username already exists");
   }
 
+  // create a new board before creating a user.
+  const board = await Board.create({});
+
+  // populate the boards with the columns before sending to the frontend
   const user = await User.create({
     username,
     email,
-    password
+    password,
+    boards: board._id,
   });
+
+  user.password = undefined;
+  user.register_date = undefined;
 
   if (user) {
     const token = generateToken(user._id);
@@ -34,17 +43,13 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: secondsInWeek * 1000
+      maxAge: secondsInWeek * 1000,
     });
 
     res.status(201).json({
       success: {
-        user: {
-          id: user._id,
-          username: user.username,
-          email: user.email
-        }
-      }
+        user,
+      },
     });
   } else {
     res.status(400);
@@ -66,7 +71,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: secondsInWeek * 1000
+      maxAge: secondsInWeek * 1000,
     });
 
     res.status(200).json({
@@ -74,9 +79,9 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
         user: {
           id: user._id,
           username: user.username,
-          email: user.email
-        }
-      }
+          email: user.email,
+        },
+      },
     });
   } else {
     res.status(401);
@@ -100,9 +105,9 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
-      }
-    }
+        email: user.email,
+      },
+    },
   });
 });
 
