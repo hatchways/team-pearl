@@ -4,6 +4,7 @@ import { FormikHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import register from '../../helpers/APICalls/register';
+import demoUserLogin from '../../helpers/APICalls/demoUserLogin';
 import SignUpForm from './SignUpForm/SignUpForm';
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
@@ -36,6 +37,20 @@ export default function Register(): JSX.Element {
     });
   };
 
+  const handleDemoUserSubmit = () => {
+    demoUserLogin().then((data) => {
+      if (data.error) {
+        updateSnackBarMessage(data.error.message);
+      } else if (data.success) {
+        updateLoginContext(data.success);
+      } else {
+        // should not get here from backend but this catch is for an unknown issue
+        console.error({ data });
+        updateSnackBarMessage('An unexpected error occurred. Please try again');
+      }
+    });
+  };
+
   return (
     <AuthWrapper>
       <Box className={classes.authWrapper}>
@@ -47,7 +62,7 @@ export default function Register(): JSX.Element {
               </Typography>
             </Grid>
           </Grid>
-          <SignUpForm handleSubmit={handleSubmit} />
+          <SignUpForm handleSubmit={handleSubmit} demoUserLogin={handleDemoUserSubmit} />
         </Box>
         <Box p={1} alignSelf="center" />
       </Box>
