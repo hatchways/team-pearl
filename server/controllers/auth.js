@@ -1,6 +1,7 @@
-const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
+const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
+const Board = require("../models/Board");
 
 // @route POST /auth/register
 // @desc Register user
@@ -22,11 +23,19 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     throw new Error("A user with that username already exists");
   }
 
+  // create a new board before creating a user.
+  const board = await Board.create({});
+
+  // populate the boards with the columns before sending to the frontend
   const user = await User.create({
     username,
     email,
     password,
+    boards: board._id,
   });
+
+  user.password = undefined;
+  user.register_date = undefined;
 
   if (user) {
     const token = generateToken(user._id);
