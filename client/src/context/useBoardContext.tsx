@@ -1,8 +1,8 @@
 import { useState, createContext, FunctionComponent, Dispatch, SetStateAction } from 'react';
 import mockBoard from '../mocks/mockData';
-import { DataInterface } from '../interface/Data';
+import { IData } from '../interface';
 
-export const BoardContext = createContext({} as any);
+export const BoardContext = createContext({} as [IData, Dispatch<SetStateAction<IData>>]);
 
 export const BoardProvider: FunctionComponent = ({ children }): JSX.Element => {
   const [board, setBoard] = useState(mockBoard);

@@ -1,4 +1,4 @@
-import { User } from '../interface/User';
+import { User } from '../interface';
 
 const mockLoggedInUser: User = {
   email: 'mockLoggedInUser@gmail.com',

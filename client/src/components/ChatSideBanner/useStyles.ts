@@ -36,6 +36,16 @@ const useStyles = makeStyles((theme) => ({
   noChatToSelectText: {
     margin: '1rem 0',
   },
+  link: {
+    border: '1px solid blue',
+    borderRadius: 5,
+    padding: '10px',
+    textDecoration: 'none',
+    color: 'blue',
+
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
 export default useStyles;

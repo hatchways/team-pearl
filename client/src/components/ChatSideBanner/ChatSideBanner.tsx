@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from 'react';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import { Box, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import { User } from '../../interface/User';
 import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
 import Search from '../Search/Search';
 import AuthMenu from '../AuthMenu/AuthMenu';
+import { Link } from 'react-router-dom';
 
 interface Props {
   loggedInUser: User;
@@ -39,6 +39,9 @@ const ChatSideBanner = ({ loggedInUser }: Props): JSX.Element => {
         <Typography className={classes.chatTitle} variant="h5">
           Users
         </Typography>
+        <Link to="/calendar" className={classes.link}>
+          Calendar
+        </Link>
         <Search search={search} handleChange={handleChange} />
       </Box>
     </Grid>
