@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     width: 'auto',
     borderRadius: '2px',
     display: 'flex',
-    height: '100%',
+    height: 'auto',
     marginTop: '20px',
     margin: 'auto',
     [theme.breakpoints.up('lg')]: {

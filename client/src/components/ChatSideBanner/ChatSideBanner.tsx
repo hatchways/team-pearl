@@ -39,9 +39,6 @@ const ChatSideBanner = ({ loggedInUser }: Props): JSX.Element => {
         <Typography className={classes.chatTitle} variant="h5">
           Users
         </Typography>
-        <Link to="/calendar" className={classes.link}>
-          Calendar
-        </Link>
         <Search search={search} handleChange={handleChange} />
       </Box>
     </Grid>
