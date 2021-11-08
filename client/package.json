@@ -27,6 +27,7 @@
     "formik": "^2.2.6",
     "react": "^17.0.1",
     "react-bootstrap": "^2.0.1",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
@@ -59,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-router-dom": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
