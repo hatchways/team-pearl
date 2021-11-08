@@ -3,8 +3,18 @@ import { Box, AppBar, Toolbar, IconButton, Typography, Button } from '@mui/mater
 import { CalendarToday, Dashboard, Menu as MenuIcon, Add } from '@material-ui/icons';
 import logo from '../../Images/logo.png';
 import userLogo from '../../Images/d9fc84a0d1d545d77e78aaad39c20c11d3355074.png';
+import BoardModal, { ModalProps } from '../BoardModal/BoardModal';
+import React from 'react';
 
 export default function DashBoardContent(): JSX.Element {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const data: ModalProps = {
+    handleClose,
+    handleOpen,
+    open,
+  };
   return (
     <Box>
       <Box>
@@ -31,7 +41,7 @@ export default function DashBoardContent(): JSX.Element {
                   right: '5px',
                 }}
               >
-                <Button variant="contained" sx={{ bgcolor: '', mr: '10px' }} startIcon={<Add />}>
+                <Button onClick={handleOpen} variant="contained" sx={{ bgcolor: '', mr: '10px' }} startIcon={<Add />}>
                   Create Board
                 </Button>
                 <img width="50px" className="rounded-circle" height="50px" src={userLogo} />
@@ -54,6 +64,7 @@ export default function DashBoardContent(): JSX.Element {
           </AppBar>
         </Box>
       </Box>
+      <BoardModal {...data} />
     </Box>
   );
 }
