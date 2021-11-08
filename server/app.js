@@ -3,14 +3,17 @@ const path = require("path");
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const { notFound, errorHandler } = require("./middleware/error");
-const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const connectDB = require("./db");
+const { notFound, errorHandler } = require("./middleware/error");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const boardRouter = require("./routes/board");
+const columnRouter = require("./routes/column");
+const cardRouter = require("./routes/card");
 
 const { json, urlencoded } = express;
 
@@ -41,8 +44,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/auth", authRouter);
-app.use("/users", userRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/boards", boardRouter);
+app.use("/api/v1/columns", columnRouter);
+app.use("/api/v1/cards", cardRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
