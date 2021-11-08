@@ -6,8 +6,8 @@ import userLogo from '../../Images/d9fc84a0d1d545d77e78aaad39c20c11d3355074.png'
 
 export default function DashBoardContent(): JSX.Element {
   return (
-    <div>
-      <div>
+    <Box>
+      <Box>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" color="transparent" sx={{ pb: 2, pt: 2 }}>
             <Toolbar>
@@ -40,8 +40,8 @@ export default function DashBoardContent(): JSX.Element {
             </Toolbar>
           </AppBar>
         </Box>
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
@@ -53,7 +53,7 @@ export default function DashBoardContent(): JSX.Element {
             </Toolbar>
           </AppBar>
         </Box>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 import { useEffect } from 'react';
 import DashBoardContent from '../../components/DashBoard/DashBoardContent';
+import { Box } from '@mui/system';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -29,7 +30,7 @@ export default function Dashboard(): JSX.Element {
   }
 
   return (
-    <div>
+    <Box>
       <DashBoardContent />
       <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
         <CssBaseline />
@@ -37,6 +38,6 @@ export default function Dashboard(): JSX.Element {
           <ChatSideBanner loggedInUser={loggedInUser} />
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }
