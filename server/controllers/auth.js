@@ -123,3 +123,39 @@ exports.logoutUser = asyncHandler(async (req, res, next) => {
 
   res.send("You have successfully logged out");
 });
+
+// @route GET /auth/demo-user
+// @desc Load demo user
+// @access Private
+exports.loadDemoUser = asyncHandler(async (req, res, next) => {
+  let demoUser
+  const demoUserExists = await User.findOne({email: "demoUser@email.com"})
+
+  if (!demoUserExists) {
+    demoUser = await User.create({
+      email: "demoUser@email.com",
+      username: "demoUser",
+      password: "demoUser123"
+    })
+  } else {
+    demoUser = demoUserExists
+  }
+
+  const token = generateToken(demoUser._id);
+  const secondsInWeek = 604800;
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    maxAge: secondsInWeek * 1000
+  });
+
+  res.status(200).json({
+    success: {
+      user: {
+        id: demoUser._id,
+        username: demoUser.username,
+        email: demoUser.email
+      }
+    }
+  });
+})

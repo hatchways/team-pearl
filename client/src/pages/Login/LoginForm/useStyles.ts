@@ -42,6 +42,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#3a8dff',
     fontWeight: 'bold',
   },
+  demoBtn: {
+    width: 160,
+    fontSize: 16,
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: '#ffffff',
+    color: '#3a8dff',
+    boxShadow: 'none',
+
+    '&:hover': {
+      backgroundColor: '#3a8dff',
+      color: '#ffffff',
+    },
+  },
 }));
 
 export default useStyles;
