@@ -2,21 +2,21 @@ const mongoose = require("mongoose");
 const Column = require("./Column");
 
 const boardSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    default: "My First Board",
-    required: true,
-  },
-  description: {
-    type: String,
-    default: "my first board",
-  },
   columns: [
     {
       type: mongoose.Schema.ObjectId,
       ref: "Column",
     },
   ],
+  description: {
+    type: String,
+    default: "my first board",
+  },
+  title: {
+    type: String,
+    default: "My First Board",
+    required: true,
+  },
 });
 
 boardSchema.pre("save", async function (next) {
