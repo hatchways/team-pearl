@@ -4,6 +4,7 @@ import { FormikHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import login from '../../helpers/APICalls/login';
+import demoUserLogin from '../../helpers/APICalls/demoUserLogin';
 import LoginForm from './LoginForm/LoginForm';
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
@@ -26,10 +27,23 @@ export default function Login(): JSX.Element {
       } else if (data.success) {
         updateLoginContext(data.success);
       } else {
-        // should not get here from backend but this catch is for an unknown issue
+        // should not get here from backend but this catch is for an unknown 
         console.error({ data });
 
         setSubmitting(false);
+        updateSnackBarMessage('An unexpected error occurred. Please try again');
+      }
+    });
+  };
+
+  const handleDemoUserSubmit = () => {
+    demoUserLogin().then((data) => {
+      if (data.error) {
+        updateSnackBarMessage(data.error.message);
+      } else if (data.success) {
+        updateLoginContext(data.success);
+      } else {
+        console.error({ data });
         updateSnackBarMessage('An unexpected error occurred. Please try again');
       }
     });
@@ -46,7 +60,7 @@ export default function Login(): JSX.Element {
               </Typography>
             </Grid>
           </Grid>
-          <LoginForm handleSubmit={handleSubmit} />
+          <LoginForm handleSubmit={handleSubmit} demoUserLogin={handleDemoUserSubmit} />
         </Box>
         <Box p={1} alignSelf="center" />
       </Box>
