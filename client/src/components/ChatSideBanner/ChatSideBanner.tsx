@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ChatSideBanner = ({ loggedInUser }: Props): JSX.Element => {
-  const [search, setSearch] = useState<string>('test');
+  const [search, setSearch] = useState<string>(loggedInUser.username);
   const [newChatUser, setNewChatUser] = useState<User | null>(null);
   const classes = useStyles();
 

@@ -7,3 +7,7 @@ export interface SearchUsersApiData {
   users?: User[];
   error?: { message: string };
 }
+
+export interface UpdateUserProfileApiData {
+  user: User;
+}

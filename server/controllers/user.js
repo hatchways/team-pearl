@@ -6,7 +6,7 @@ const {
   deleteFromCloudinary,
 } = require("../utils/cloudinary");
 
-// @route POST /users
+// @route GET /users
 // @desc Search for users
 // @access Private
 exports.searchUsers = asyncHandler(async (req, res, next) => {
@@ -68,6 +68,26 @@ exports.deleteImage = asyncHandler(async (req, res, next) => {
   );
 
   res.status(200).json({
+    success: {
+      user,
+    },
+  });
+});
+
+// @route PATCH /users/update
+// @desc update a user's detail
+// @access Private
+exports.updateUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.user.id, req.body, {
+    new: true,
+  });
+
+  if (!user) {
+    res.status(400);
+    throw new Error("The user with this ID doesn't exist");
+  }
+
+  res.status(201).json({
     success: {
       user,
     },
