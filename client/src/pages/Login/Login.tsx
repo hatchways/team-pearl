@@ -27,7 +27,7 @@ export default function Login(): JSX.Element {
       } else if (data.success) {
         updateLoginContext(data.success);
       } else {
-        // should not get here from backend but this catch is for an unknown issue
+        // should not get here from backend but this catch is for an unknown 
         console.error({ data });
 
         setSubmitting(false);
@@ -43,7 +43,6 @@ export default function Login(): JSX.Element {
       } else if (data.success) {
         updateLoginContext(data.success);
       } else {
-        // should not get here from backend but this catch is for an unknown issue
         console.error({ data });
         updateSnackBarMessage('An unexpected error occurred. Please try again');
       }
