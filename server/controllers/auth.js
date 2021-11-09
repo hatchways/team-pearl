@@ -1,6 +1,7 @@
-const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
+const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
+const Board = require("../models/Board");
 
 // @route POST /auth/register
 // @desc Register user
@@ -22,11 +23,19 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     throw new Error("A user with that username already exists");
   }
 
+  // create a new board before creating a user.
+  const board = await Board.create({});
+
+  // populate the boards with the columns before sending to the frontend
   const user = await User.create({
     username,
     email,
-    password
+    password,
+    boards: board._id,
   });
+
+  user.password = undefined;
+  user.register_date = undefined;
 
   if (user) {
     const token = generateToken(user._id);
@@ -34,7 +43,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: secondsInWeek * 1000
+      maxAge: secondsInWeek * 1000,
     });
 
     res.status(201).json({
@@ -42,9 +51,9 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
         user: {
           id: user._id,
           username: user.username,
-          email: user.email
-        }
-      }
+          email: user.email,
+        },
+      },
     });
   } else {
     res.status(400);
@@ -66,7 +75,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: secondsInWeek * 1000
+      maxAge: secondsInWeek * 1000,
     });
 
     res.status(200).json({
@@ -74,9 +83,9 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
         user: {
           id: user._id,
           username: user.username,
-          email: user.email
-        }
-      }
+          email: user.email,
+        },
+      },
     });
   } else {
     res.status(401);
@@ -100,9 +109,9 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
-      }
-    }
+        email: user.email,
+      },
+    },
   });
 });
 
@@ -114,3 +123,39 @@ exports.logoutUser = asyncHandler(async (req, res, next) => {
 
   res.send("You have successfully logged out");
 });
+
+// @route GET /auth/demo-user
+// @desc Load demo user
+// @access Private
+exports.loadDemoUser = asyncHandler(async (req, res, next) => {
+  let demoUser
+  const demoUserExists = await User.findOne({email: "demoUser@email.com"})
+
+  if (!demoUserExists) {
+    demoUser = await User.create({
+      email: "demoUser@email.com",
+      username: "demoUser",
+      password: "demoUser123"
+    })
+  } else {
+    demoUser = demoUserExists
+  }
+
+  const token = generateToken(demoUser._id);
+  const secondsInWeek = 604800;
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    maxAge: secondsInWeek * 1000
+  });
+
+  res.status(200).json({
+    success: {
+      user: {
+        id: demoUser._id,
+        username: demoUser.username,
+        email: demoUser.email
+      }
+    }
+  });
+})

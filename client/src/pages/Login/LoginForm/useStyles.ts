@@ -11,9 +11,21 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '5px',
   },
   inputs: {
-    marginTop: '.8rem',
-    height: '2rem',
+    fontSize: 16,
+    fontWeight: 'bold',
+    height: '3rem',
     padding: '5px',
+    boxShadow: '0px 0px 12px 0px rgba(0,51,255,0.1)',
+    textAlign: 'center',
+
+    '&:last-child': {
+      marginTop: '-10px',
+    },
+
+    '&::placeholder': {
+      color: '#000000',
+      opacity: 1,
+    },
   },
   forgot: {
     paddingRight: 10,
@@ -29,6 +41,19 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     backgroundColor: '#3a8dff',
     fontWeight: 'bold',
+  },
+  demoBtn: {
+    width: 160,
+    fontSize: 16,
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: '#ffffff',
+    color: '#3a8dff',
+    boxShadow: 'none',
+
+    '&:hover': {
+      backgroundColor: '#3a8dff',
+      color: '#ffffff',
+    },
   },
 }));
 
