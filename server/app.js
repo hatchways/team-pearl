@@ -9,6 +9,8 @@ const logger = require("morgan");
 const connectDB = require("./db");
 const { notFound, errorHandler } = require("./middleware/error");
 
+const { sendEmail } = require("./services/email");
+
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const boardRouter = require("./routes/board");
@@ -64,6 +66,8 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(notFound);
 app.use(errorHandler);
+
+sendEmail({ to: "slsk0219@gmail.com", subject: "test", text: "test" });
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
