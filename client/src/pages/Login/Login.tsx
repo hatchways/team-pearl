@@ -27,7 +27,7 @@ export default function Login(): JSX.Element {
       } else if (data.success) {
         updateLoginContext(data.success);
       } else {
-        // should not get here from backend but this catch is for an unknown 
+        // should not get here from backend but this catch is for an unknown
         console.error({ data });
 
         setSubmitting(false);

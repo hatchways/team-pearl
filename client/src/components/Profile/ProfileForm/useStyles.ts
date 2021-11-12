@@ -1,0 +1,45 @@
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  form: {
+    width: '100%', // Fix IE 11 issue.
+  },
+  label: {
+    fontSize: 19,
+    color: 'rgb(0,0,0,0.4)',
+    paddingLeft: '5px',
+  },
+  inputs: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    height: '3rem',
+    padding: '5px',
+    boxShadow: '0px 0px 12px 0px rgba(0,51,255,0.1)',
+    textAlign: 'center',
+
+    '&:last-child': {
+      marginTop: '-10px',
+    },
+
+    '&::placeholder': {
+      color: '#000000',
+      opacity: 1,
+    },
+  },
+  forgot: {
+    paddingRight: 10,
+    color: '#3a8dff',
+  },
+  submit: {
+    margin: theme.spacing(1, 1, 2, 1),
+    padding: 10,
+    width: 160,
+    height: 56,
+    borderRadius: theme.shape.borderRadius,
+    fontSize: 16,
+    backgroundColor: '#3a8dff',
+    fontWeight: 'bold',
+  },
+}));
+
+export default useStyles;

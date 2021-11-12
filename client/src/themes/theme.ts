@@ -13,6 +13,6 @@ export const theme = createMuiTheme({
     primary: { main: '#3A8DFF' },
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: 7,
   },
 });

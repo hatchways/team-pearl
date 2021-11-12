@@ -9,6 +9,7 @@ import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
 
 import './App.css';
+import Profile from './components/Profile/Profile';
 
 function App(): JSX.Element {
   return (
@@ -22,6 +23,9 @@ function App(): JSX.Element {
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard">
                   <Dashboard />
+                </Route>
+                <Route exact path="/profile">
+                  <Profile />
                 </Route>
                 <Route path="*">
                   <Redirect to="/login" />

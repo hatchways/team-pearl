@@ -1,48 +1,36 @@
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box';
+import { Box, Button, CircularProgress, TextField } from '@material-ui/core';
 import { Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import useStyles from './useStyles';
-import { CircularProgress } from '@material-ui/core';
 
 interface Props {
   handleSubmit: (
-    {
-      username,
-      email,
-      password,
-    }: {
-      email: string;
-      password: string;
-      username: string;
-    },
+    { password, oldPassword }: { password: string; oldPassword: string },
     {
       setStatus,
       setSubmitting,
     }: FormikHelpers<{
-      email: string;
       password: string;
-      username: string;
+      oldPassword: string;
     }>,
   ) => void;
-  demoUserLogin: () => void;
 }
 
-const SignUpForm = ({ handleSubmit, demoUserLogin }: Props): JSX.Element => {
+export default function ProfileForm({ handleSubmit }: Props): JSX.Element {
   const classes = useStyles();
 
   return (
     <Formik
       initialValues={{
-        email: '',
         password: '',
-        username: '',
+        oldPassword: '',
       }}
       validationSchema={Yup.object().shape({
-        username: Yup.string().required('Username is required').max(40, 'Username is too long'),
-        email: Yup.string().required('Email is required').email('Email is not valid'),
         password: Yup.string()
+          .required('Password is required')
+          .max(100, 'Password is too long')
+          .min(6, 'Password too short'),
+        oldPassword: Yup.string()
           .required('Password is required')
           .max(100, 'Password is too long')
           .min(6, 'Password too short'),
@@ -52,57 +40,46 @@ const SignUpForm = ({ handleSubmit, demoUserLogin }: Props): JSX.Element => {
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
-            id="username"
-            placeholder="Enter email"
+            id="oldPassword"
+            placeholder="Enter current password"
             fullWidth
             margin="normal"
             InputProps={{
               classes: { input: classes.inputs },
               disableUnderline: true,
             }}
-            name="username"
-            autoComplete="username"
+            name="oldPassword"
+            autoComplete="oldPassword"
             autoFocus
-            helperText={touched.username ? errors.username : ''}
-            error={touched.username && Boolean(errors.username)}
-            value={values.username}
+            helperText={touched.oldPassword ? errors.oldPassword : ''}
+            error={touched.oldPassword && Boolean(errors.oldPassword)}
+            value={values.oldPassword}
             onChange={handleChange}
           />
           <TextField
             id="password"
-            placeholder="Create password"
+            placeholder="Enter new password"
             fullWidth
             margin="normal"
             InputProps={{
               classes: { input: classes.inputs },
               disableUnderline: true,
             }}
-            type="password"
-            autoComplete="current-password"
+            name="password"
+            autoComplete="password"
+            autoFocus
             helperText={touched.password ? errors.password : ''}
             error={touched.password && Boolean(errors.password)}
             value={values.password}
             onChange={handleChange}
           />
-
           <Box textAlign="center">
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Sign Up'}
-            </Button>
-            <Button
-              onClick={demoUserLogin}
-              size="large"
-              variant="contained"
-              color="primary"
-              className={classes.demoBtn}
-            >
-              Demo User
+              {isSubmitting ? <CircularProgress style={{ color: '#759CFC' }} /> : 'Update Password'}
             </Button>
           </Box>
         </form>
       )}
     </Formik>
   );
-};
-
-export default SignUpForm;
+}

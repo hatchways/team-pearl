@@ -68,7 +68,6 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-
   if (user && (await user.matchPassword(password))) {
     const token = generateToken(user._id);
     const secondsInWeek = 604800;
@@ -84,6 +83,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
           id: user._id,
           username: user.username,
           email: user.email,
+          avatar: user.avatar,
         },
       },
     });
@@ -110,6 +110,7 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
         id: user._id,
         username: user.username,
         email: user.email,
+        avatar: user.avatar,
       },
     },
   });
@@ -132,17 +133,17 @@ exports.logoutUser = asyncHandler(async (req, res, next) => {
 // @desc Load demo user
 // @access Private
 exports.loadDemoUser = asyncHandler(async (req, res, next) => {
-  let demoUser
-  const demoUserExists = await User.findOne({email: "demoUser@email.com"})
+  let demoUser;
+  const demoUserExists = await User.findOne({ email: "demoUser@email.com" });
 
   if (!demoUserExists) {
     demoUser = await User.create({
       email: "demoUser@email.com",
       username: "demoUser",
-      password: "demoUser123"
-    })
+      password: "demoUser123",
+    });
   } else {
-    demoUser = demoUserExists
+    demoUser = demoUserExists;
   }
 
   const token = generateToken(demoUser._id);
@@ -150,7 +151,7 @@ exports.loadDemoUser = asyncHandler(async (req, res, next) => {
 
   res.cookie("token", token, {
     httpOnly: true,
-    maxAge: secondsInWeek * 1000
+    maxAge: secondsInWeek * 1000,
   });
 
   res.status(200).json({
@@ -158,8 +159,38 @@ exports.loadDemoUser = asyncHandler(async (req, res, next) => {
       user: {
         id: demoUser._id,
         username: demoUser.username,
-        email: demoUser.email
-      }
-    }
+        email: demoUser.email,
+      },
+    },
   });
-})
+});
+
+// @route PATCH /auth/update
+// @desc update a user's password
+// @access Private
+exports.updatePassword = asyncHandler(async (req, res, next) => {
+  const { password, oldPassword } = req.body;
+
+  const user = await User.findById(req.user.id).select("+password");
+
+  if (!user) {
+    res.status(400);
+    throw new Error("The user with this ID doesn't exist");
+  }
+
+  if (!(await user.isMatch(oldPassword, user.password))) {
+    res.status(400);
+    throw new Error("Incorrect password");
+  }
+
+  user.password = password;
+
+  await user.save();
+
+  res.status(201).json({
+    success: {
+      email: user.email,
+      username: user.username,
+    },
+  });
+});

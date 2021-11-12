@@ -8,11 +8,13 @@ const {
   searchUsers,
   uploadImage,
   deleteImage,
+  updateUser,
 } = require("../controllers/user");
 
 router.use(protect);
 
 router.route("/").get(searchUsers);
+router.route("/update").patch(updateUser);
 router.route("/upload-image").post(upload.single("image"), uploadImage);
 router.route("/delete-image").delete(deleteImage);
 
