@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles from './useStyles';
 import Card from '../Card/Card';
-import { ICard } from '../../interface/Data';
+import { ICard } from '../../interface';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { Grid, Typography } from '@material-ui/core';
 import { MoreHoriz } from '@material-ui/icons';

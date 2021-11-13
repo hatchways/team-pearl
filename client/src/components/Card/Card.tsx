@@ -60,7 +60,7 @@ export default function Card(props: any): JSX.Element {
               {props.card.title}
             </Typography>
             <Typography variant="body1" className={classes.date}>
-              {props.card.date}
+              {props.card.start}
             </Typography>
           </div>
         )}

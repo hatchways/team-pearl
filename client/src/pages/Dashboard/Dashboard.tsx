@@ -1,5 +1,5 @@
 import Grid from '@material-ui/core/Grid';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
@@ -7,7 +7,6 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 import { useEffect } from 'react';
-import { BoardProvider } from '../../context/useBoardContext';
 import Board from '../../components/Board/Board';
 
 export default function Dashboard(): JSX.Element {
@@ -31,13 +30,11 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
-      <BoardProvider>
-        <CssBaseline />
-        <Grid item className={classes.drawerWrapper}>
-          <ChatSideBanner loggedInUser={loggedInUser} />
-        </Grid>
-        <Board />
-      </BoardProvider>
+      <CssBaseline />
+      <Grid item className={classes.drawerWrapper}>
+        <ChatSideBanner loggedInUser={loggedInUser} />
+      </Grid>
+      <Board />
     </Grid>
   );
 }
