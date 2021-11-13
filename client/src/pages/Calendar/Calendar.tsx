@@ -4,11 +4,14 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin, { EventResizeDoneArg } from '@fullcalendar/interaction';
 
+import useStyles from './useStyles';
 import { BoardContext } from '../../context/useBoardContext';
 import { ICard } from '../../interface';
+import { Container } from '@material-ui/core';
 
 const Calendar = (): JSX.Element => {
   const [board, setBoard] = useContext(BoardContext);
+  const classes = useStyles();
 
   const handleClick = (info: EventClickArg) => {
     // you need to render the card details popup here
@@ -72,25 +75,28 @@ const Calendar = (): JSX.Element => {
   }
 
   return (
-    <FullCalendar
-      allDaySlot={false}
-      dayMaxEvents={true}
-      editable={true}
-      events={eventsData}
-      eventClick={handleClick}
-      eventDrop={handleEventDrop}
-      eventMouseEnter={handleMouseEnter}
-      eventResize={handleEventResize}
-      headerToolbar={{
-        left: 'prevYear,prev,next,nextYear today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay',
-      }}
-      height="90%"
-      initialView="dayGridMonth"
-      nowIndicator={true}
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-    />
+    <Container maxWidth="xl" className={classes.root}>
+      <FullCalendar
+        allDaySlot={false}
+        contentHeight={100}
+        dayMaxEvents={true}
+        editable={true}
+        events={eventsData}
+        eventClick={handleClick}
+        eventDrop={handleEventDrop}
+        eventMouseEnter={handleMouseEnter}
+        eventResize={handleEventResize}
+        headerToolbar={{
+          left: '',
+          center: 'title',
+          right: 'today prev,next',
+        }}
+        height="100%"
+        initialView="dayGridMonth"
+        nowIndicator={true}
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+      />
+    </Container>
   );
 };
 

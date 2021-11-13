@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     height: '60px',
   },
+  content: {
+    padding: theme.spacing(2),
+  },
 }));
 
 export default useStyles;

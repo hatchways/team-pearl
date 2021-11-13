@@ -37,8 +37,10 @@ const Home = (): JSX.Element => {
           </Tabs>
         </AppBar>
       </Grid>
-      {selectedTab === 0 && <Dashboard />}
-      {selectedTab === 1 && <Calendar />}
+      <Grid xs={12} className={classes.content}>
+        {selectedTab === 0 && <Dashboard />}
+        {selectedTab === 1 && <Calendar />}
+      </Grid>
     </Grid>
   );
 };
