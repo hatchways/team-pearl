@@ -1,17 +1,18 @@
 import { Box, Button, CircularProgress, TextField } from '@material-ui/core';
 import { Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
+import { theme } from '../../../themes/theme';
 import useStyles from './useStyles';
 
 interface Props {
   handleSubmit: (
-    { password, oldPassword }: { password: string; oldPassword: string },
+    { password, currentPassword }: { password: string; currentPassword: string },
     {
       setStatus,
       setSubmitting,
     }: FormikHelpers<{
       password: string;
-      oldPassword: string;
+      currentPassword: string;
     }>,
   ) => void;
 }
@@ -23,14 +24,14 @@ export default function ProfileForm({ handleSubmit }: Props): JSX.Element {
     <Formik
       initialValues={{
         password: '',
-        oldPassword: '',
+        currentPassword: '',
       }}
       validationSchema={Yup.object().shape({
         password: Yup.string()
           .required('Password is required')
           .max(100, 'Password is too long')
           .min(6, 'Password too short'),
-        oldPassword: Yup.string()
+        currentPassword: Yup.string()
           .required('Password is required')
           .max(100, 'Password is too long')
           .min(6, 'Password too short'),
@@ -40,7 +41,7 @@ export default function ProfileForm({ handleSubmit }: Props): JSX.Element {
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
-            id="oldPassword"
+            id="currentPassword"
             placeholder="Enter current password"
             fullWidth
             margin="normal"
@@ -48,12 +49,12 @@ export default function ProfileForm({ handleSubmit }: Props): JSX.Element {
               classes: { input: classes.inputs },
               disableUnderline: true,
             }}
-            name="oldPassword"
-            autoComplete="oldPassword"
+            name="currentPassword"
+            autoComplete="current-password"
             autoFocus
-            helperText={touched.oldPassword ? errors.oldPassword : ''}
-            error={touched.oldPassword && Boolean(errors.oldPassword)}
-            value={values.oldPassword}
+            helperText={touched.currentPassword ? errors.currentPassword : ''}
+            error={touched.currentPassword && Boolean(errors.currentPassword)}
+            value={values.currentPassword}
             onChange={handleChange}
           />
           <TextField
@@ -66,7 +67,7 @@ export default function ProfileForm({ handleSubmit }: Props): JSX.Element {
               disableUnderline: true,
             }}
             name="password"
-            autoComplete="password"
+            autoComplete="new-password"
             autoFocus
             helperText={touched.password ? errors.password : ''}
             error={touched.password && Boolean(errors.password)}
@@ -75,7 +76,7 @@ export default function ProfileForm({ handleSubmit }: Props): JSX.Element {
           />
           <Box textAlign="center">
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-              {isSubmitting ? <CircularProgress style={{ color: '#759CFC' }} /> : 'Update Password'}
+              {isSubmitting ? <CircularProgress style={{ color: theme.palette.primary.light }} /> : 'Update Password'}
             </Button>
           </Box>
         </form>

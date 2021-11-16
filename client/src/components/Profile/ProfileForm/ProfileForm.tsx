@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import useStyles from './useStyles';
 
 import { User } from '../../../interface/User';
+import { theme } from '../../../themes/theme';
 
 interface Props {
   handleSubmit: (
@@ -71,7 +72,7 @@ export default function ProfileForm({ handleSubmit }: Props): JSX.Element {
           />
           <Box textAlign="center">
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-              {isSubmitting ? <CircularProgress style={{ color: '#759CFC' }} /> : 'Submit'}
+              {isSubmitting ? <CircularProgress style={{ color: theme.palette.primary.light }} /> : 'Submit'}
             </Button>
           </Box>
         </form>

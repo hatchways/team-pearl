@@ -1,6 +1,5 @@
 import { FetchOptions } from '../../interface/FetchOptions';
 import { AuthApiData } from '../../interface/AuthApiData';
-import { API_BASE_URL } from './contants';
 
 export async function updateProfilePicture(formData: FormData): Promise<AuthApiData> {
   const fetchOptions: FetchOptions = {
@@ -9,7 +8,7 @@ export async function updateProfilePicture(formData: FormData): Promise<AuthApiD
     credentials: 'include',
   };
 
-  return await fetch(`${API_BASE_URL}/users/upload-image`, fetchOptions)
+  return await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/upload-image`, fetchOptions)
     .then((res) => res.json())
     .catch(() => ({
       error: { message: 'Unable to connect to server. Please try again' },

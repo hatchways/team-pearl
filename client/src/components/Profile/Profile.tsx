@@ -33,10 +33,10 @@ const Profile: FunctionComponent = () => {
   };
 
   const handlePasswordSubmit = (
-    { password, oldPassword }: { password: string; oldPassword: string },
-    { setSubmitting, resetForm }: FormikHelpers<{ password: string; oldPassword: string }>,
+    { password, currentPassword }: { password: string; currentPassword: string },
+    { setSubmitting, resetForm }: FormikHelpers<{ password: string; currentPassword: string }>,
   ) => {
-    updatePassword(password, oldPassword).then((data) => {
+    updatePassword(password, currentPassword).then((data) => {
       if (data.error) {
         setSubmitting(false);
         resetForm();
