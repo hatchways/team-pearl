@@ -55,7 +55,7 @@ const Profile: FunctionComponent = () => {
   const handlePictureSubmit = (formData: FormData) => {
     updateProfilePicture(formData).then((data) => {
       if (data.error) {
-        console.log(data.error);
+        console.error(data.error);
       } else if (data.success) {
         updateLoginContext(data.success);
       } else {
