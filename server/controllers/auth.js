@@ -169,17 +169,17 @@ exports.loadDemoUser = asyncHandler(async (req, res, next) => {
 // @desc update a user's password
 // @access Private
 exports.updatePassword = asyncHandler(async (req, res, next) => {
-  const { password, oldPassword } = req.body;
+  const { password, currentPassword } = req.body;
 
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await User.findById(req.user.id);
 
   if (!user) {
     res.status(400);
     throw new Error("The user with this ID doesn't exist");
   }
 
-  if (!(await user.isMatch(oldPassword, user.password))) {
-    res.status(400);
+  if (!(await user.matchPassword(currentPassword))) {
+    res.status(403);
     throw new Error("Incorrect password");
   }
 
@@ -187,7 +187,7 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
 
   await user.save();
 
-  res.status(201).json({
+  res.status(200).json({
     success: {
       email: user.email,
       username: user.username,

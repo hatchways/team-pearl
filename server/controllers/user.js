@@ -87,7 +87,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
     throw new Error("The user with this ID doesn't exist");
   }
 
-  res.status(201).json({
+  res.status(200).json({
     success: {
       user,
     },
